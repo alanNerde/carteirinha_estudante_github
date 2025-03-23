@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteirinha de Estudante</title>
+    <script src="https://unpkg.com/vue@3.5.13"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f5f5f5;
+        }
+        .container {
+            display: flex;
+            gap: 20px;
+        }
+        .formulario {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .carteirinha {
+            width: 300px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .foto {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- Formulário -->
+        <div class="formulario">
+            <h2>Preencha seus dados</h2>
+            <label>Curso:</label>
+            <input v-model="curso" type="text"><br><br>
+
+            <label>Data de Nascimento:</label>
+            <input v-model="dataNascimento" type="date"><br><br>
+
+            <label>RA:</label>
+            <input v-model="ra" type="text"><br><br>
+
+            <label>CPF:</label>
+            <input v-model="cpf" type="text"><br><br>
+
+            <label>Foto:</label>
+            <input type="file" @change="atualizarFoto"><br><br>
+        </div>
+
+        <!-- Carteirinha -->
+        <div class="carteirinha" v-if="curso || dataNascimento || ra || cpf || foto">
+            <h2>Carteirinha de Estudante</h2>
+            <img v-bind:src="foto" class="foto" v-if="foto">
+            <p><strong>Curso:</strong> {{ curso }}</p>
+            <p><strong>Data de Nascimento:</strong> {{ dataNascimento }}</p>
+            <p><strong>RA:</strong> {{ ra }}</p>
+            <p><strong>CPF:</strong> {{ cpf }}</p>
+        </div>
+    </div>
+    <script src="./CarteirinhaJs.js"></script>
+</body>
+</html>
