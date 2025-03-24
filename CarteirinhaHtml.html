@@ -13,24 +13,18 @@
             align-items: center;
             height: 100vh;
             background-color: #f5f5f5;
+            transition: background 0.3s, color 0.3s; 
         }
         .container {
             display: flex;
             gap: 20px;
         }
-        .formulario {
+        .formulario, .carteirinha {
             background: white;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .carteirinha {
-            width: 300px;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            text-align: center;
+            transition: background 0.3s, color 0.3s;
         }
         .foto {
             width: 100px;
@@ -38,6 +32,15 @@
             border-radius: 50%;
             object-fit: cover;
             margin-bottom: 10px;
+        }
+        .dark {
+            background-color: #121212;
+            color: white;
+        }
+        .dark .formulario, .dark .carteirinha {
+            background: #1e1e1e;
+            color: white;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
         }
     </style>
 </head>
@@ -60,6 +63,11 @@
 
             <label>Foto:</label>
             <input type="file" @change="atualizarFoto"><br><br>
+
+            <label>
+                <input type="checkbox" v-model = "modoEscuro" @change = "alternarModoEscuro">
+                Ativar modo escuro
+            </label>
         </div>
 
         <!-- Carteirinha -->

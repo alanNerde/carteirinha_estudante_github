@@ -5,7 +5,8 @@ const app = Vue.createApp({
             dataNascimento: '',
             ra: '',
             cpf: '',
-            foto: ''
+            foto: '',
+            modoEscuro: false
         };
     },
     methods: {
@@ -20,6 +21,24 @@ const app = Vue.createApp({
                 alert("Por favor, selecione um arquivo de imagem válido.");
                 event.target.value = '';
             }
+        },
+        alternarModoEscuro(){
+            if(this.modoEscuro){
+                document.body.classList.add('dark');
+            } else{
+                document.body.classList.remove('dark');
+            }
+        }
+    },
+    mounted(){
+        const darkModeAtivado = localStorage.getItem('modoEscuro') === 'true';
+        this.modoEscuro = darkModeAtivado;
+        this.alternarModoEscuro;
+    },
+    watch: {
+        modoEscuro(novoValor){
+            localStorage.setItem('modoEscuro', novoValor);
+            this.alternarModoEscuro();
         }
     }
 });
